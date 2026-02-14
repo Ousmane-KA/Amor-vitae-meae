@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="fr" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Déclaration Saint-Valentin</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+    }
+    
+    body {
+      box-sizing: border-box;
+    }
+    
+    .font-playfair {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .font-cormorant {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.5)); }
+      50% { filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.8)); }
+    }
+    
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes heart-beat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.15); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.1); }
+      60% { transform: scale(1); }
+    }
+    
+    .floating-heart {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .heart-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    
+    .heart-beat {
+      animation: heart-beat 1.5s ease-in-out infinite;
+    }
+    
+    .verse-section {
+      animation: fade-in-up 1s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .sparkle {
+      animation: sparkle 2s ease-in-out infinite;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #be123c, #f43f5e, #fb7185);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .romantic-bg {
+      background: linear-gradient(135deg, #1a0a10 0%, #2d1520 25%, #1f0d15 50%, #2a1018 75%, #150810 100%);
+    }
+    
+    .card-bg {
+      background: linear-gradient(145deg, rgba(45, 21, 32, 0.95), rgba(26, 10, 16, 0.98));
+      backdrop-filter: blur(10px);
+    }
+    
+    .verse-card {
+      background: linear-gradient(145deg, rgba(251, 113, 133, 0.08), rgba(190, 18, 60, 0.05));
+      border: 1px solid rgba(251, 113, 133, 0.15);
+    }
+    
+    .refrain-card {
+      background: linear-gradient(145deg, rgba(244, 63, 94, 0.15), rgba(190, 18, 60, 0.1));
+      border: 2px solid rgba(244, 63, 94, 0.3);
+    }
+    
+    .scroll-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-track {
+      background: rgba(251, 113, 133, 0.1);
+      border-radius: 4px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #f43f5e, #be123c);
+      border-radius: 4px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #fb7185, #f43f5e);
+    }
+    
+    .petal {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: radial-gradient(ellipse at center, #f43f5e 0%, #be123c 100%);
+      border-radius: 50% 0 50% 50%;
+      transform: rotate(45deg);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    
+    @keyframes fall {
+      0% {
+        transform: translateY(-10%) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(100%) rotate(720deg);
+        opacity: 0;
+      }
+    }
+    
+    .chat-box {
+      background: linear-gradient(145deg, rgba(190, 18, 60, 0.08), rgba(251, 113, 133, 0.05));
+      border: 1px solid rgba(244, 63, 94, 0.2);
+      height: 600px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      padding: 24px;
+    }
+    
+    .chat-box::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    .chat-box::-webkit-scrollbar-track {
+      background: rgba(251, 113, 133, 0.1);
+      border-radius: 5px;
+    }
+    
+    .chat-box::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #f43f5e, #be123c);
+      border-radius: 5px;
+    }
+    
+    .chat-box::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #fb7185, #f43f5e);
+    }
+    
+    .message {
+      animation: slide-in 0.5s ease-out forwards;
+      opacity: 0;
+      display: flex;
+      margin-bottom: 20px;
+    }
+    
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .message-user {
+      justify-content: flex-end;
+    }
+    
+    .message-user .bubble {
+      background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%);
+      color: #fff;
+      border-radius: 18px 18px 4px 18px;
+      padding: 12px 16px;
+      max-width: 70%;
+      word-wrap: break-word;
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+    }
+    
+    .message-user .bubble-image {
+      border-radius: 18px 18px 4px 18px;
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+    }
+    
+    .message-other {
+      justify-content: flex-start;
+    }
+    
+    .message-other .bubble {
+      background: linear-gradient(135deg, rgba(251, 113, 133, 0.2), rgba(244, 63, 94, 0.1));
+      color: #fce4ec;
+      border: 1px solid rgba(251, 113, 133, 0.3);
+      border-radius: 18px 18px 18px 4px;
+      padding: 12px 16px;
+      max-width: 70%;
+      word-wrap: break-word;
+    }
+    
+    .message-other .bubble-image {
+      border: 1px solid rgba(251, 113, 133, 0.3);
+      border-radius: 18px 18px 18px 4px;
+    }
+    
+    .bubble-image {
+      max-width: 220px;
+      height: auto;
+      max-height: 320px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+    }
+    
+    .message-time {
+      font-size: 0.75rem;
+      color: rgba(251, 113, 133, 0.6);
+      margin-top: 4px;
+      font-style: italic;
+    }
+    
+    @keyframes appear-and-fade {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+        filter: blur(10px);
+      }
+      15% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        filter: blur(0px);
+      }
+      85% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.5) rotate(15deg);
+        filter: blur(10px);
+      }
+    }
+    
+    .heart-image {
+      max-width: 150px;
+      height: auto;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(244, 63, 94, 0.4);
+      border-radius: 20px;
+      border: 2px solid rgba(244, 63, 94, 0.5);
+    }
+    
+    .heart-image-left {
+      animation: appear-and-fade 10s ease-in-out infinite;
+    }
+    
+    .heart-image-right {
+      animation: appear-and-fade 10s ease-in-out 2s infinite;
+    }
+    
+    .hearts-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      align-items: center;
+      min-height: 250px;
+      position: relative;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .heart-frame {
+      position: relative;
+      width: 160px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .heart-glow-frame {
+      position: absolute;
+      inset: -15px;
+      background: radial-gradient(circle, rgba(244, 63, 94, 0.4) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse-glow 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    @media (max-width: 768px) {
+      .hearts-gallery {
+        gap: 20px;
+      }
+      
+      .heart-frame {
+        width: 120px;
+        height: 140px;
+      }
+      
+      .heart-image {
+        max-width: 100px;
+      }
+      
+      .chat-box {
+        height: 500px;
+        padding: 16px;
+      }
+      
+      .message-user .bubble,
+      .message-other .bubble {
+        max-width: 85%;
+      }
+    }
+  </style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full romantic-bg text-rose-100 overflow-hidden">
+  <div id="petals-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+  <div class="h-full w-full flex flex-col relative z-10"><!-- Header avec cœur animé -->
+   <header class="flex-shrink-0 text-center py-6 px-4 relative">
+    <div class="absolute inset-0 overflow-hidden">
+     <div class="sparkle absolute top-4 left-1/4 text-rose-400 text-xl" style="animation-delay: 0s;">
+      ✦
+     </div>
+     <div class="sparkle absolute top-8 right-1/4 text-pink-300 text-lg" style="animation-delay: 0.5s;">
+      ✧
+     </div>
+     <div class="sparkle absolute top-12 left-1/3 text-rose-300 text-sm" style="animation-delay: 1s;">
+      ✦
+     </div>
+     <div class="sparkle absolute top-6 right-1/3 text-pink-400 text-xl" style="animation-delay: 1.5s;">
+      ✧
+     </div>
+    </div><!-- Galerie de cœurs avec images -->
+    <div class="hearts-gallery">
+     <div class="heart-frame" style="animation-delay: 0s;">
+      <div class="heart-glow-frame"></div><img id="heart-image-left" class="heart-image heart-image-left" src="./images/r9.JPG" alt="Couple moment" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #be123c, #f43f5e)'; this.alt='Image unavailable';">
+     </div>
+     <div class="floating-heart heart-glow inline-block">
+      <svg class="w-16 h-16 mx-auto text-rose-500 heart-beat" viewbox="0 0 24 24" fill="currentColor">
+       <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+      </svg>
+     </div>
+     <div class="heart-frame" style="animation-delay: 0.5s;">
+      <div class="heart-glow-frame"></div><img id="heart-image-right" class="heart-image heart-image-right" src="./images/o1.JPG" alt="Love moment" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f43f5e, #fb7185)'; this.alt='Image unavailable';">
+     </div>
+    </div>
+    <h1 id="main-title" class="font-playfair text-4xl md:text-5xl font-bold gradient-text mb-2">Pour toi...</h1>
+    <p id="dedication" class="font-cormorant text-xl md:text-2xl text-rose-300 italic">À celle qui illumine mes nuits</p>
+    <div class="flex justify-center items-center gap-3 mt-3"><span class="text-rose-400">♥</span>
+     <div class="w-24 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent"></div><span class="text-rose-400">♥</span>
+     <div class="w-24 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent"></div><span class="text-rose-400">♥</span>
+    </div>
+   </header><!-- Contenu principal avec poème -->
+   <main class="flex-1 overflow-auto scroll-container px-4 pb-8">
+    <div class="max-w-3xl mx-auto space-y-6"><!-- Introduction -->
+     <section class="verse-section verse-card rounded-2xl p-6 shadow-xl" style="animation-delay: 0.2s;">
+      <div class="flex items-start gap-3"><span class="text-3xl text-rose-400 leading-none">"</span>
+       <div class="font-cormorant text-lg md:text-xl leading-relaxed text-rose-100 space-y-3">
+        <p>J'arrive pas à te l'avouer mais je suis tombé sous ton charme,</p>
+        <p>J'ai trop lutté contre mes sentiments je dépose les armes</p>
+        <p>C'est sans doute ce qu'on appelle l'Amour,</p>
+        <p class="italic text-rose-300">Qui aurait pu dire que je connaitrai ça un jour ?</p>
+       </div>
+      </div>
+     </section><!-- Couplet 2 -->
+     <section class="verse-section verse-card rounded-2xl p-6 shadow-xl" style="animation-delay: 0.4s;">
+      <div class="font-cormorant text-lg md:text-xl leading-relaxed text-rose-100 space-y-3">
+       <p>J'ai pas le courage de te le dire en face</p>
+       <p>Je profite de cet instant pour briser la glace</p>
+       <p>Oh, j'ai trop de fierté ça m'agace</p>
+       <p class="italic text-rose-300">Finalement peut-être que je ne suis pas assez coriace</p>
+      </div>
+     </section><!-- Transition -->
+     <div class="verse-section text-center py-4" style="animation-delay: 0.5s;">
+      <p class="font-playfair text-2xl text-rose-400 italic">Faut que tu saches que…</p>
+      <div class="flex justify-center gap-2 mt-3"><span class="text-rose-500 heart-beat inline-block">♥</span> <span class="text-rose-400 heart-beat inline-block" style="animation-delay: 0.2s;">♥</span> <span class="text-rose-500 heart-beat inline-block" style="animation-delay: 0.4s;">♥</span>
+      </div>
+     </div><!-- Refrain -->
+     <section class="verse-section refrain-card rounded-2xl p-8 shadow-2xl" style="animation-delay: 0.6s;">
+      <div class="text-center">
+       <div class="inline-block mb-4">
+        <svg class="w-10 h-10 text-rose-400 heart-glow" viewbox="0 0 24 24" fill="currentColor">
+         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
+       </div>
+       <div class="font-playfair text-xl md:text-2xl leading-relaxed text-rose-100 space-y-2">
+        <p class="font-semibold text-rose-300">Toutes les nuits je pense à toi</p>
+        <p>Toutes les nuits je rêve de nous deux</p>
+        <p class="font-semibold text-rose-300">Toutes les nuits je pense à toi</p>
+        <p class="italic">Tout près de moi je nous vois tous les deux</p>
+       </div>
+      </div>
+     </section><!-- Couplet 3 -->
+     <section class="verse-section verse-card rounded-2xl p-6 shadow-xl" style="animation-delay: 0.8s;">
+      <div class="font-cormorant text-lg md:text-xl leading-relaxed text-rose-100 space-y-3">
+       <p>Dès que la nuit tombe, tu es dans mes rêves</p>
+       <p>Je m'imagine à tes côtés, embrassant tes lèvres</p>
+       <p>Sois ma maîtresse, apprends-moi, je serai ton élève</p>
+       <p class="italic text-rose-300">J'aimerais être celui, veux-tu être celle ?</p>
+      </div>
+     </section><!-- Couplet 4 -->
+     <section class="verse-section verse-card rounded-2xl p-6 shadow-xl" style="animation-delay: 1s;">
+      <div class="font-cormorant text-lg md:text-xl leading-relaxed text-rose-100 space-y-3">
+       <p>T'es la seule et l'unique avec qui je veux vivre</p>
+       <p>J'espère qu'on finira ensemble à la fin du livre</p>
+       <p>Laisse-moi t'avouer ce que je ressens</p>
+       <p class="italic text-rose-300 font-semibold">Je t'ai dans la tête et dans le sang ♥</p>
+      </div>
+     </section><!-- Refrain 2 -->
+     <section class="verse-section refrain-card rounded-2xl p-8 shadow-2xl" style="animation-delay: 1.2s;">
+      <div class="text-center">
+       <div class="font-playfair text-xl md:text-2xl leading-relaxed text-rose-100 space-y-2">
+        <p class="font-semibold text-rose-300">Toutes les nuits je pense à toi</p>
+        <p>Toutes les nuits je rêve de nous deux</p>
+        <p class="font-semibold text-rose-300">Toutes les nuits je pense à toi</p>
+        <p class="italic">Tout près de moi je nous vois tous les deux</p>
+       </div>
+      </div>
+     </section><!-- Couplet 5 -->
+     <section class="verse-section verse-card rounded-2xl p-6 shadow-xl" style="animation-delay: 1.4s;">
+      <div class="font-cormorant text-lg md:text-xl leading-relaxed text-rose-100 space-y-3">
+       <p>Je voudrais passer des heures à te caresser</p>
+       <p>Ton parfum, ta chaleur, j'en ai jamais assez</p>
+       <p>Je te promets que je te dirai jamais rien de déplacé</p>
+       <p class="italic text-rose-300">Prêt à faire des efforts, je suis prêt à me dépasser</p>
+      </div>
+     </section><!-- Couplet 6 -->
+     <section class="verse-section verse-card rounded-2xl p-6 shadow-xl" style="animation-delay: 1.6s;">
+      <div class="font-cormorant text-lg md:text-xl leading-relaxed text-rose-100 space-y-3">
+       <p>Je sais que t'aurais jamais pensé</p>
+       <p>Que je t'avouerais que t'es dans mes pensées</p>
+       <p>Je combats ma timidité</p>
+       <p class="italic text-rose-300 font-semibold">Baby, ma baby, pour toi je viens chanter ♥</p>
+      </div>
+     </section><!-- Pont émotionnel -->
+     <section class="verse-section text-center py-6" style="animation-delay: 1.8s;">
+      <div class="verse-card rounded-2xl p-6 inline-block">
+       <p class="font-playfair text-xl md:text-2xl text-rose-300 italic leading-relaxed">Pas une nuit sans que je pense à toi<br><span class="text-rose-400">Tu illumines ma vie et tu m'inspires la joie</span><br>
+         Chaque jour qui passe, tu habites mes nuits<br><span class="font-semibold">Non, ça ne change pas</span></p>
+      </div>
+     </section><!-- Refrain final -->
+     <section class="verse-section refrain-card rounded-2xl p-8 shadow-2xl" style="animation-delay: 2s;">
+      <div class="text-center">
+       <div class="flex justify-center gap-2 mb-4"><span class="text-2xl heart-beat">💕</span> <span class="text-2xl heart-beat" style="animation-delay: 0.3s;">💖</span> <span class="text-2xl heart-beat" style="animation-delay: 0.6s;">💕</span>
+       </div>
+       <div class="font-playfair text-xl md:text-2xl leading-relaxed text-rose-100 space-y-2">
+        <p class="font-bold text-rose-300 text-2xl md:text-3xl">Toutes les nuits je pense à toi</p>
+        <p>Toutes les nuits je rêve de nous deux</p>
+        <p class="font-bold text-rose-300 text-2xl md:text-3xl">Toutes les nuits je pense à toi</p>
+        <p class="italic text-xl">Tout près de moi je nous vois tous les deux</p>
+       </div>
+       <div class="mt-6">
+        <span class="text-4xl heart-glow">❤️</span>
+       </div>
+      </div>
+     </section><!-- Section Chat -->
+     <section class="verse-section" style="animation-delay: 2.1s;">
+      <div class="text-center mb-6">
+       <h2 id="chat-title" class="font-playfair text-3xl md:text-4xl text-rose-300">Notre conversation spéciale</h2>
+       <p class="font-cormorant text-rose-400 mt-2">💬 Les moments qui ont tout changé</p>
+      </div>
+      <div id="chat-container" class="chat-box rounded-2xl shadow-2xl max-w-2xl mx-auto"><!-- Les messages s'affichent ici -->
+      </div>
+     </section><!-- Signature finale -->
+     <footer class="verse-section text-center py-8" style="animation-delay: 2.4s;">
+      <div class="flex justify-center items-center gap-4">
+       <div class="w-16 h-px bg-gradient-to-r from-transparent to-rose-400"></div><span class="text-rose-400 text-2xl">♥</span>
+       <div class="w-16 h-px bg-gradient-to-l from-transparent to-rose-400"></div>
+      </div>
+      <p class="font-playfair text-2xl text-rose-300 mt-4 italic">Avec tout mon amour</p>
+      <p class="font-cormorant text-lg text-rose-400 mt-2">Saint-Valentin 2025</p>
+      <div class="flex justify-center gap-1 mt-4"><span class="text-rose-500">♥</span> <span class="text-rose-400">♥</span> <span class="text-rose-300">♥</span> <span class="text-rose-400">♥</span> <span class="text-rose-500">♥</span>
+      </div>
+     </footer>
+    </div>
+   </main>
+  </div>
+  <script>
+    const defaultConfig = {
+      main_title: "Pour toi...",
+      dedication: "À celle qui illumine mes nuits",
+      chat_title: "Notre conversation spéciale",
+      background_color: "#1a0a10",
+      text_color: "#ffe4e6",
+      accent_color: "#f43f5e",
+      card_color: "#2d1520",
+      highlight_color: "#fda4af",
+      font_family: "Playfair Display",
+      font_size: 18
+    };
+    
+    let config = { ...defaultConfig };
+    
+    // Messages de chat par défaut - Supporte texte ET images
+    const defaultMessages = [
+
+      { type: "user", image: "./images/sms1-O.jpeg", time: "15:11" },
+      { type: "other", image: "./images/sms2-R.jpeg", time: "15:27" },
+      { type: "user", image: "./images/sms3-O.jpeg", time: "20:17" },
+      { type: "other", image: "./images/sms4-R.jpeg", time: "23:23" },
+    
+    ];
+    
+    function initializeChat() {
+      const chatContainer = document.getElementById('chat-container');
+      chatContainer.innerHTML = '';
+      
+      defaultMessages.forEach((msg, index) => {
+        setTimeout(() => {
+          const messageDiv = document.createElement('div');
+          messageDiv.className = `message ${msg.type === 'user' ? 'message-user' : 'message-other'}`;
+          messageDiv.style.animationDelay = `${index * 0.1}s`;
+          
+          const bubbleContainer = document.createElement('div');
+          
+          if (msg.image) {
+            const img = document.createElement('img');
+            img.src = msg.image;
+            img.alt = "Shared moment";
+            img.className = 'bubble-image';
+            img.loading = 'lazy';
+            img.onerror = function() {
+              console.error('Image failed to load:', this.src);
+              this.style.background = 'linear-gradient(135deg, #be123c, #f43f5e)';
+              this.alt = 'Image unavailable';
+            };
+            bubbleContainer.appendChild(img);
+          } else {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.innerHTML = `
+              <div>${msg.text}</div>
+              <div class="message-time">${msg.time}</div>
+            `;
+            bubbleContainer.appendChild(bubble);
+          }
+          
+          if (msg.image) {
+            const timeEl = document.createElement('div');
+            timeEl.className = 'message-time';
+            timeEl.textContent = msg.time;
+            bubbleContainer.appendChild(timeEl);
+          }
+          
+          messageDiv.appendChild(bubbleContainer);
+          chatContainer.appendChild(messageDiv);
+          
+          // Auto-scroll vers le bas
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }, index * 100);
+      });
+    }
+    
+    // Création des pétales qui tombent
+    function createPetals() {
+      const container = document.getElementById('petals-container');
+      const petalCount = 15;
+      
+      for (let i = 0; i < petalCount; i++) {
+        setTimeout(() => {
+          const petal = document.createElement('div');
+          petal.className = 'petal';
+          petal.style.left = Math.random() * 100 + '%';
+          petal.style.animationDuration = (8 + Math.random() * 6) + 's';
+          petal.style.animationDelay = Math.random() * 2 + 's';
+          petal.style.animation = `fall ${8 + Math.random() * 6}s linear infinite`;
+          petal.style.width = (10 + Math.random() * 10) + 'px';
+          petal.style.height = (10 + Math.random() * 10) + 'px';
+          container.appendChild(petal);
+        }, i * 500);
+      }
+    }
+    
+    // Animation des sections au scroll
+    function animateOnScroll() {
+      const sections = document.querySelectorAll('.verse-section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      sections.forEach(section => {
+        section.style.animationPlayState = 'paused';
+        observer.observe(section);
+      });
+    }
+    
+    async function onConfigChange(cfg) {
+      config = { ...defaultConfig, ...cfg };
+      
+      // Mise à jour du titre
+      const titleEl = document.getElementById('main-title');
+      if (titleEl) {
+        titleEl.textContent = config.main_title || defaultConfig.main_title;
+      }
+      
+      // Mise à jour de la dédicace
+      const dedicationEl = document.getElementById('dedication');
+      if (dedicationEl) {
+        dedicationEl.textContent = config.dedication || defaultConfig.dedication;
+      }
+      
+      // Mise à jour du titre du chat
+      const chatTitleEl = document.getElementById('chat-title');
+      if (chatTitleEl) {
+        chatTitleEl.textContent = config.chat_title || defaultConfig.chat_title;
+      }
+      
+      // Appliquer la police
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      document.querySelectorAll('.font-playfair').forEach(el => {
+        el.style.fontFamily = `${fontFamily}, serif`;
+      });
+      
+      // Appliquer la taille de police
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.querySelectorAll('.font-cormorant').forEach(el => {
+        el.style.fontSize = `${baseSize}px`;
+      });
+    }
+    
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => {
+              cfg.background_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => cfg.card_color || defaultConfig.card_color,
+            set: (value) => {
+              cfg.card_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ card_color: value });
+            }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => {
+              cfg.text_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => cfg.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              cfg.accent_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value });
+            }
+          },
+          {
+            get: () => cfg.highlight_color || defaultConfig.highlight_color,
+            set: (value) => {
+              cfg.highlight_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ highlight_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => cfg.font_family || defaultConfig.font_family,
+          set: (value) => {
+            cfg.font_family = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => cfg.font_size || defaultConfig.font_size,
+          set: (value) => {
+            cfg.font_size = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+    
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ["main_title", cfg.main_title || defaultConfig.main_title],
+        ["dedication", cfg.dedication || defaultConfig.dedication],
+        ["chat_title", cfg.chat_title || defaultConfig.chat_title]
+      ]);
+    }
+    
+    // Initialisation
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+    
+    createPetals();
+    animateOnScroll();
+    onConfigChange(config);
+    initializeChat();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cdc28b8e0833c8c',t:'MTc3MTA2Nzg0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
