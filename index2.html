@@ -273,7 +273,7 @@
     }
     
     .heart-image {
-      max-width: 150px;
+      max-width: 120px;
       height: auto;
       object-fit: cover;
       box-shadow: 0 10px 30px rgba(244, 63, 94, 0.4);
@@ -292,18 +292,18 @@
     .hearts-gallery {
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: 30px;
       align-items: center;
-      min-height: 250px;
+      min-height: 160px;
       position: relative;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
       flex-wrap: wrap;
     }
     
     .heart-frame {
       position: relative;
-      width: 160px;
-      height: 180px;
+      width: 130px;
+      height: 140px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -321,15 +321,17 @@
     @media (max-width: 768px) {
       .hearts-gallery {
         gap: 20px;
+        min-height: 140px;
+        margin-bottom: 4px;
       }
       
       .heart-frame {
-        width: 120px;
-        height: 140px;
+        width: 100px;
+        height: 110px;
       }
       
       .heart-image {
-        max-width: 100px;
+        max-width: 80px;
       }
       
       .chat-box {
@@ -348,18 +350,18 @@
  <body class="h-full romantic-bg text-rose-100 overflow-hidden">
   <div id="petals-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
   <div class="h-full w-full flex flex-col relative z-10"><!-- Header avec cœur animé -->
-   <header class="flex-shrink-0 text-center py-6 px-4 relative">
+   <header class="flex-shrink-0 text-center py-2 px-4 relative">
     <div class="absolute inset-0 overflow-hidden">
-     <div class="sparkle absolute top-4 left-1/4 text-rose-400 text-xl" style="animation-delay: 0s;">
+     <div class="sparkle absolute top-2 left-1/4 text-rose-400 text-lg" style="animation-delay: 0s;">
       ✦
      </div>
-     <div class="sparkle absolute top-8 right-1/4 text-pink-300 text-lg" style="animation-delay: 0.5s;">
+     <div class="sparkle absolute top-4 right-1/4 text-pink-300 text-sm" style="animation-delay: 0.5s;">
       ✧
      </div>
-     <div class="sparkle absolute top-12 left-1/3 text-rose-300 text-sm" style="animation-delay: 1s;">
+     <div class="sparkle absolute top-6 left-1/3 text-rose-300 text-xs" style="animation-delay: 1s;">
       ✦
      </div>
-     <div class="sparkle absolute top-6 right-1/3 text-pink-400 text-xl" style="animation-delay: 1.5s;">
+     <div class="sparkle absolute top-3 right-1/3 text-pink-400 text-lg" style="animation-delay: 1.5s;">
       ✧
      </div>
     </div><!-- Galerie de cœurs avec images -->
@@ -368,7 +370,7 @@
       <div class="heart-glow-frame"></div><img id="heart-image-left" class="heart-image heart-image-left" src="./images/r9.JPG" alt="Couple moment" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #be123c, #f43f5e)'; this.alt='Image unavailable';">
      </div>
      <div class="floating-heart heart-glow inline-block">
-      <svg class="w-16 h-16 mx-auto text-rose-500 heart-beat" viewbox="0 0 24 24" fill="currentColor">
+      <svg class="w-12 h-12 mx-auto text-rose-500 heart-beat" viewbox="0 0 24 24" fill="currentColor">
        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
       </svg>
      </div>
@@ -376,15 +378,15 @@
       <div class="heart-glow-frame"></div><img id="heart-image-right" class="heart-image heart-image-right" src="./images/o1.JPG" alt="Love moment" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f43f5e, #fb7185)'; this.alt='Image unavailable';">
      </div>
     </div>
-    <h1 id="main-title" class="font-playfair text-4xl md:text-5xl font-bold gradient-text mb-2">Pour toi...</h1>
-    <p id="dedication" class="font-cormorant text-xl md:text-2xl text-rose-300 italic">À celle qui illumine mes nuits</p>
-    <div class="flex justify-center items-center gap-3 mt-3"><span class="text-rose-400">♥</span>
-     <div class="w-24 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent"></div><span class="text-rose-400">♥</span>
-     <div class="w-24 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent"></div><span class="text-rose-400">♥</span>
+    <h1 id="main-title" class="font-playfair text-3xl md:text-4xl font-bold gradient-text mb-0">Pour toi...</h1>
+    <p id="dedication" class="font-cormorant text-lg md:text-xl text-rose-300 italic mt-1">À celle qui illumine mes nuits</p>
+    <div class="flex justify-center items-center gap-2 mt-2"><span class="text-rose-400 text-sm">♥</span>
+     <div class="w-16 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent"></div><span class="text-rose-400 text-sm">♥</span>
+     <div class="w-16 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent"></div><span class="text-rose-400 text-sm">♥</span>
     </div>
    </header><!-- Contenu principal avec poème -->
    <main class="flex-1 overflow-auto scroll-container px-4 pb-8">
-    <div class="max-w-3xl mx-auto space-y-6"><!-- Introduction -->
+    <div class="max-w-4xl mx-auto space-y-6"><!-- Introduction -->
      <section class="verse-section verse-card rounded-2xl p-6 shadow-xl" style="animation-delay: 0.2s;">
       <div class="flex items-start gap-3"><span class="text-3xl text-rose-400 leading-none">"</span>
        <div class="font-cormorant text-lg md:text-xl leading-relaxed text-rose-100 space-y-3">
@@ -525,12 +527,10 @@
     
     // Messages de chat par défaut - Supporte texte ET images
     const defaultMessages = [
-
       { type: "user", image: "./images/sms1-O.jpeg", time: "15:11" },
       { type: "other", image: "./images/sms2-R.jpeg", time: "15:27" },
       { type: "user", image: "./images/sms3-O.jpeg", time: "20:17" },
-      { type: "other", image: "./images/sms4-R.jpeg", time: "23:23" },
-    
+      { type: "other", image: "./images/sms4-R.jpeg", time: "23:23" }
     ];
     
     function initializeChat() {
@@ -734,5 +734,10 @@
     onConfigChange(config);
     initializeChat();
   </script>
+<<<<<<< HEAD
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cdcc54611d802e2',t:'MTc3MTA3NDI1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+=======
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cdc28b8e0833c8c',t:'MTc3MTA2Nzg0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+>>>>>>> 1337129f322415589354e81afe21879d89eee7c8
